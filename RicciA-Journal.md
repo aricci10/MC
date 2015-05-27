@@ -1,4 +1,4 @@
-Primera Clase 27-May-2015
+#Primera Clase 27-May-2015
 
 Hola mundo. Aquí estoy comenzando el curso de **Metodos Computacionales**
 
@@ -18,4 +18,5 @@ Los métodos a estudiar son:
 +Integración y diferenciación numérica
 
 
-Estamos editando el archivo en línea.
+Estamos editando el archivo Online
+
