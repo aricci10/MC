@@ -24,3 +24,18 @@ Durante la primera clase iniciamos la introducción al curso. En esta introducci
 + Git commit
 + Git pull
 + Git push
+
+#Segunda Clase 29-May-2015
+
+##Laboratorio
+
+Durante el laboratorio de hoy trabajamos en Markdownm, bash y 
+
+##Magistral
+
+
+En el taller realizado:
+
+Semana 15: Método de inferencia bayesiana
+
+Fecha Enero 5 del 2013 Hora: 23:05:56
