@@ -44,8 +44,30 @@ Como se observa en el código, la linea `while(JugoLimon<8)` Sirve para hacer ju
 
 [Postre Limón](http://www.cocinasemana.com/recetas/receta/postre-de-limon/21213)
 
+## Para el punto 2 de la tarea se usó el siguiente código:
+
+```
+#!/bin/bash
+for i in {1..1000}
+do
+	printf "%d,%d\n" $i $((i * i)) >> cuadrados.csv
+done
+	
+```
+
 ## Para el punto 3 de la tarea se usó el siguiente código:
 
 ```
 awk -F"," '{print(($1+$2))}' cuadrados.csv >> cuadradosSumados.csv
+```
+
+## Para el punto 4 de la tarea se usó el siguiente código:
+
+```
+#!/bin/bash
+
+a=$(echo $1)
+b=$(echo $2)
+
+printf $((a+b))
 ```
