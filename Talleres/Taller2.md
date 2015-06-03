@@ -64,3 +64,25 @@ rm pgn1.tsv
 rm pgn.tsv
 rm Sectores.tsv
 ``` 
+
+Código implementado para **Lotería**
+
+```
+#!/bin/bash
+
+
+wget https://raw.githubusercontent.com/ComputoCienciasUniandes/MetodosComputacionalesLaboratorio/master/2015-V/actividades/lottery/lottery.csv
+
+printf "La tarea "
+awk -F"," '{if($1==201327449) print $2}' lottery.csv
+
+x=$(head -1 lottery.csv)
+
+printf "la fecha es: "
+
+printf "%s %s %s %d\n" $x
+
+rm lottery.csv
+
+```
+
