@@ -31,6 +31,8 @@ Haga una copia de este archivo en su repositorio de GitHub en la carpeta /MC/Tal
 
 **Al terminar la clase ejecute `lottery.sh` para saber si su taller va a ser revisado.**
 
+#Solución
+
 Código implementado para **Expresiones Regulares**
 
 ```
