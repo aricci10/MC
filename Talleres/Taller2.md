@@ -86,3 +86,19 @@ rm lottery.csv
 
 ```
 
+Implementación de **gnuplot**
+
+Para implementar gnuplot, primero es necesario copiar y pegar el texto en un archivo de texto, y usando `cmnd+f` en el edidtor de texto, se pueden empezar a reemplazar los valores, hasta poder convertir el archivo en un csv. 
+
+Además se implementa el siguiente código:
+
+```
+gnuplot
+
+set datafile separator ","
+
+cuad(x)=x**2
+cube(x)=x**3
+
+plot saturno.csv cuad(4) cube(5)
+``` 
