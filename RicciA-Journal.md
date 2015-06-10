@@ -96,4 +96,33 @@ gmake -f prueba.mk
 
 Uno de los temas que siempre me ha intrigado, es la educación. He dictado muchas veces clase y he sido múltiples veces monitor donde he podido notar que en general tanto la física como las matemáticas le cuestan mucho trabajo de entender a la gente, pero que cuando existen procesos interactivos como gráficas animaciones entre otros, dicho aprendizaje se vuelve mucho más fácil. Por esta razón me gustaría desarrollar algún programa que tome alguno de los temas de física que en general sea muy abstracto y de alguna forma generar una forma de comprensión interactiva. 
 
+#Clase 7 10-jun-2015
 
+Hoy trabajamos en ipython. El trabajo fue crear un panel de 5x5 para poder mostrar diferentes figuras de lissajou. Para ello el código implementado, realizaba las siguientes funciones:
+
+1. Crear 3 variables aleatorias, correspondientes a los dos valores de velocidad angular y al desfase de un movimiento oscilatorio con respecto al otro.
+
+2. Crear una gráfica parámetrica, usando las tres variables aleatorias generadas anteriormente.
+
+3. Almacenar el gráfico en un archivo png
+
+El código implementado fue:
+
+```
+def correr():
+    i=0
+    fig=figure(figsize=(15,15))
+    while(i<25):
+        subplot(5,5,i+1)
+        a=randint(1,9)
+        b=randint(1,9)
+        c=randint(1,9)
+        x=linspace(0,2*pi,1000)
+        plot(cos(a*x+b),cos(c*x))
+        plt.axis('off')
+        i=i+1
+    savefig("Lissajou.png")
+correr()
+```
+
+Y el resultado obtenido se muestra en la siguiente imagen
