@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TRABAJO REALIZADO POR ALFREDO RICCI Y NICOLÁS RANGEL
+
 #Introducimos un método de bash que corta una string donde entran
 #como parámetros los siguientes datos ${NombreArchivo: PrimerCaracter: NumCaracteresSiguientes}
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TRABAJO REALIZADO POR ALFREDO RICCI Y NICOLÁS RANGEL
+
 #Los dos primeros parámetros son las letras que intercambiaremos, el tercero es el archivo que se modificará.
 sed -e "s/$1/-$1/g" $3 | sed -e "s/$2/-$2/g" | sed -e "s/-$1/$2/g" | sed -e "s/-$2/$1/g" >> Permutado.txt
 

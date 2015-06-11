@@ -1,4 +1,7 @@
 #!/bin/bash
+
+#TRABAJO REALIZADO POR ALFREDO RICCI Y NICOLÁS RANGEL
+
 #Designamos un script de bash.
 
 #Entramos a la plataforma de Gnuplot.

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TRABAJO REALIZADO POR ALFREDO RICCI Y NICOLÁS RANGEL
+
 #Inicializamos la variable del tiempo en 0.
 t=0
 

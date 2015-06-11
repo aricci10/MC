@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TRABAJO REALIZADO POR ALFREDO RICCI Y NICOLÁS RANGEL
+
 cat $1 >> bigenigma2.txt
 
 for (( n=1; n<=10; ++n ))
