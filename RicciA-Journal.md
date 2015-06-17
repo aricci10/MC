@@ -126,3 +126,59 @@ correr()
 ```
 
 Y el resultado obtenido se muestra en la siguiente imagen
+
+
+#Clase 8 16-jun-2015
+
+Durante esta clase trabajamos en interpolación de python. La idea fue encontrar el momento dipolar magnético de un imán con sus datos de campo magnético en función de la distancia.
+
+Empecé por importar pylab usando:
+
+```
+%pylab inline
+```
+
+Posteriormente creé dos arreglos con los datos, y los grafiqué para observar el comportamiento
+
+```
+x=[2.3*10**(-2),2.8*10**(-2),3.2*10**(-2),3.7*10**(-2),4.3*10**(-2)]
+b=[34745*10**(-6),19689*10**(-6),12594*10**(-6),7982*10**(-6),5822*10**(-6)]
+scatter(x,b)
+```
+
+Teniendo en cuenta que el campo magnético es inversamente proporcional al cubo de la distancia, se linealizan los datos elevándolos al cubo e invirtiendolos de modo que:
+
+```
+i=0
+resp=[]
+while(i<5):
+    a=x[i]**(-3)
+    resp.append(a)
+    i+=1
+```
+
+Ahora se realiza un ajuste lineal por mínimos cuadrados de los datos almacenados en `resp` contra el campo magnético de la siguiente forma: 
+
+```
+d,c=polyfit(resp,b,1)
+equis=linspace(0,100000,100)
+plot(equis,d*equis+c)
+scatter(resp,b)
+```
+
+Posteriormente se encuentra el valor del momento dipolar, teniendo en cuenta que todas las constantes son la pendiente de la recta encontrada. Se realiza de la siguiente forma:
+
+```
+m=(d*2*pi)/(4*pi*10**(-7))
+print("El momento dipolar es de: ",m,)
+```
+
+Finalmente usando este valor, se grafica el modelo experimental sobre los datos originales de la siguiente manera:
+
+```
+scatter(x,b)
+equis2=linspace(0.02,0.06,100)
+```
+
+
+plot(equis2,(4*pi*10**(-7)*m*equis2**(-3)/(2*pi)),c='r')
