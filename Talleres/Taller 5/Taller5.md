@@ -18,3 +18,8 @@ Haga una copia de este archivo en su repositorio de GitHub en la carpeta /MC/Tal
 
 
 **Al terminar la clase ejecute `lottery.sh` para saber si su taller va a ser revisado.**
+
+#Solución por Alfredo Ricci Vásquez
+
+[Trabajo realizado](http://nbviewer.ipython.org/github/aricci10/MC/blob/master/Talleres/Taller%205/gibbs.ipynb)
+
