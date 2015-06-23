@@ -182,3 +182,59 @@ equis2=linspace(0.02,0.06,100)
 
 
 plot(equis2,(4*pi*10**(-7)*m*equis2**(-3)/(2*pi)),c='r')
+
+#Clase 10 22-Jun-2015
+
+Hoy trabajamos en transformadas de Fourier. Las usamos para limpiar una "Señal" correspondiente a las manchas solares. El código implementado fiue el siguiente:
+
+Se inicia por importar los datos y partirlos en 3 arreglos:
+
+```
+%pylab inline
+datos=genfromtxt('monthrg.dat')
+Anio=datos[:,0]
+Mes=datos[:,1]
+Media=datos[:,3]
+```
+
+Posteriormente, se crea un arreglo final de años decimales, los cuales incluyen el mes como un decimal de año. Siguiendo se parte el arreglo, para eliminar los los años que no tienen datos o tienen datos negativos. Se grafican los datos.
+```
+i=0
+A=[]
+while(i<len(Mes)):
+    temp=(Anio[i]+(Mes[i]-1)/12)
+    A.append(temp)
+    i+=1
+MediaF=Media[3000:(len(Media)-1)]
+AF=A[3000:(len(Media)-1)]
+figure(figsize(12,12))
+plot(AF,MediaF,lw=0.4)
+xlabel("Promedio de manchas solares")
+ylabel("Tiempo en Años)
+title("Ciclos Solares")
+```
+Luego, se halla la transformada inversa, y las frecuencias de los datos. Se grafica frecuencia contra transformada.
+
+```
+from scipy.fftpack import ifft, fft, fftfreq
+N=len(AF)
+dt=(AF[-1]-AF[0])/N
+DatF = fft(MediaF)
+freq = fftfreq(N, dt)
+plot(freq,np.abs(DatF),"o",label=u'DFT señal')
+```
+
+Finalmente, se eliminan las frecuencias menores a 0.1, para limpiar la señal y se grafican los datos iniciales y la señal filtrada.
+
+```
+figure(figsize(12,12))
+freq_max =.1
+DatF[np.abs(freq) > freq_max] = 0
+y_cleaned=ifft(DatF)
+plot(AF,y_cleaned,c='r',label="Datos")
+plot(AF,MediaF,lw=0.4,label="Filtro")
+legend()
+title("Manchas solares(Filtrada)")
+xlabel("Tiempo en años")
+ylabel("Promedio de manchas solares")
+```
