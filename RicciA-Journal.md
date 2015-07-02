@@ -125,7 +125,10 @@ def correr():
 correr()
 ```
 
-Y el resultado obtenido se muestra en la siguiente imagen
+Y el resultado obtenido se muestra en la siguiente imagen:
+
+![alt text](https://github.com/aricci10/MC/blob/master/Im%C3%A1genes/Lissajou.png "Logo Title Text 1")
+
 
 
 #Clase 8 16-jun-2015
@@ -238,3 +241,49 @@ title("Manchas solares(Filtrada)")
 xlabel("Tiempo en años")
 ylabel("Promedio de manchas solares")
 ```
+
+#Clase 13 1-Jul-2015
+
+Durante la clase de hoy trabajamos en `sympy` para resolver problemas en python de forma simbólica. El ejercicio consistía en demstrar el método de Adams–Bashforth para órdenes 2,3 y 4. Se inició por importar `sympy`de la siguiente forma:
+
+```
+from sympy import *
+init_printing(use_unicode=True)
+```
+El siguiente código muestra la implementación de orden 2. 
+
+```
+t,fn,fn1,h,tn,tn1=symbols('t fn fn1 h tn tn1')
+tn1=tn-h
+simplify(integrate(fn1*(t-tn)/(tn1-tn)+fn*(t-tn1)/(tn-tn1),(t,tn,tn+h)))
+```
+
+Como se observa, primero es necesario declarar las seis variables a usar como símbolos. Luego se corre la integral del polinomio de lagrange para la función. Cabe resaltar que los polinomios de lagrange son tales que el reemplazar el tiempo por un tiempo específico, se deben cancelar los términos de modo que se obtenga la función evaluada el dicho tiempo. Se muestran a continuación la implementación para orden 3 y 4.
+
+```
+t,fn,fn1,fn2,h,tn,tn1,tn2=symbols('t fn fn1 fn2 h tn tn1 tn2')
+tn1=tn-h
+tn2=tn-2*h
+simplify(integrate(fn1*(t-tn)*(t-tn2)/((tn1-tn)*(tn1-tn2))+fn*(t-tn1)*(t-tn2)/
+((tn-tn1)*(tn-tn2))+fn2*(t-tn)*(t-tn1)/((tn2-tn1)*(tn2-tn)),(t,tn,tn+h)))
+```
+```
+t,fn,fn1,fn2,fn3,h,tn,tn1,tn2,tn3=symbols('t fn fn1 fn2 fn3 h tn tn1 tn2 tn3')
+tn1=tn-h
+tn2=tn-2*h
+tn3=tn-3*h
+simplify(integrate(fn1*(t-tn)*(t-tn2)*(t-tn3)/
+((tn1-tn)*(tn1-tn2)*(tn1-tn3))+fn*(t-tn1)*(t-tn2)*(t-tn3)/
+((tn-tn1)*(tn-tn2)*(tn-tn3))+fn2*(t-tn)*(t-tn1)*(t-tn3)/
+((tn2-tn1)*(tn2-tn)*(tn2-tn3))+fn3*(t-tn)*(t-tn1)*(t-tn2)/
+((tn3-tn1)*(tn3-tn)*(tn3-tn2)),(t,tn,tn+h)))
+```
+
+##Entrada del proyecto.
+Siguiendo con la idea que llevo del proyecyo, tengo pensado crear un simulador en tres dimensiones para un fenómeno físico que no sea necesariamente fácil de abstraer. Entre las ideas que tengo se encuentran: 
+
++ Campos electromagnéticos.
++ Fluidos
++ Ondas electromangéticas.
+
+La idea radica en que el usuario pueda ingrasar ciertos valores, y el programa simule el resultado, de tal modo que sea fácil visualizar el fenómeno.
