@@ -130,7 +130,6 @@ Y el resultado obtenido se muestra en la siguiente imagen:
 ![alt text](https://github.com/aricci10/MC/blob/master/Im%C3%A1genes/Lissajou.png "Logo Title Text 1")
 
 
-
 #Clase 8 16-jun-2015
 
 Durante esta clase trabajamos en interpolación de python. La idea fue encontrar el momento dipolar magnético de un imán con sus datos de campo magnético en función de la distancia.
@@ -181,10 +180,9 @@ Finalmente usando este valor, se grafica el modelo experimental sobre los datos 
 ```
 scatter(x,b)
 equis2=linspace(0.02,0.06,100)
+plot(equis2,(4*pi*10**(-7)*m*equis2**(-3)/(2*pi)),c='r')
 ```
 
-
-plot(equis2,(4*pi*10**(-7)*m*equis2**(-3)/(2*pi)),c='r')
 
 #Clase 10 22-Jun-2015
 
