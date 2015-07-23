@@ -68,6 +68,61 @@ Fecha Enero 5 del 2013 Hora: 23:05:56
 
 Semana 15: Método de inferencia bayesiana
 
+#Clase 3 2-Jun-2015
+
+##Magistral 
+
+Durante esta clase, trabajé en xpresiones regulares. Estas esxpersiones son de gran utilidad a la hora de limpiar archivos, o cconveritr archivos de un formato a otro. Una expresión regular que se puede utilizar para representar cuatro caracterer al comienzo de una línea seguidos de un espacio es:
+
+```
+^.... 
+```
+
+Posteriormente realicé un ejercicio más elaborado. Éste consistía en descargar 1 millon de dígitos de pi, y separarlos en líneas de 20 dígitos. Para ello empecé por descargar el código fuente y almacenarlo en un archivo de datos usando:
+
+```
+curl http://pi.karmona.com/ >> 1Mpi.dat
+```
+
+Posteriormente usando el programa *Text Wrangler*, edite el texto con la función cmnd+f. Fue necesario implementar las siguientes expresiones regulares.
+
+```
+#Buscar:
+<BR>
+#reemplazar:
+
+#Buscar:
+<B>
+#reemplazar:
+
+#Buscar:
+</B>
+#reemplazar:
+
+#Buscar:
+(....................)
+#reemplazar:
+\1\n
+````
+
+Se usa el parentesis para crear un grupo y `\1` para llamarlo devuelta. Finalmente fue necesario borrar manualmente el encabezado de código HTML, así como la parte final.
+
+Finalmente trabajamos gráficas con GNUplot. Realicé una gráfica de los stélites jovianos usando el siguiente código:
+
+```
+gnuplot << EOF
+
+#Se designa que las gráficas que queden en la terminal.
+set terminal dumb
+set datafile separator "," 
+plot "$1" using $2:$3 with linesp
+
+EOF
+```
+
+En donde `set terminal dumb` hace que la gráfica se imprima en la consola.
+
+
 #Clase 6 9-Jun-2015
 
 ##Magistral
