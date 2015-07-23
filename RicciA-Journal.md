@@ -373,3 +373,67 @@ La idea radica en que el usuario pueda ingrasar ciertos valores, y el programa s
 ##Entrada del proyecto.
 
 Finalmente decidí que para el proyecto final quería hacer un porograma relazionado con música el cual es uno de mis hobbies. Mi idea surgió después de estudiar la transformada de Fourier. Me di cuenta que era posible separar una canción de guitarra por las frecuencias que la componían. Después pensé en darle una aplicación a esta funcionalidad, y surgió la idea de crear animaciones en una "guitarra" virtual, aplicando teoría de ondas estacionarias en cuerdas.
+
+#Clase 16 07-Jul-2015
+
+Para solucionar la ecuación con un extremo libre, se plantea una solución que usa una aproximación. Dado que para solucionar la ecuación se deben conocer los valores que están al lado izquierdo y derecho, pero en este caso solo hay un valor al lado izquierdo, se asumirá que el último punto tiene el mismo comportamineto que el punto que se encuentra a su izquierda. El código implementado fue:
+
+
+Se inicia por declarar constantes.
+```
+tmin=0
+tmax=.003105882
+xmin=-0.33  # en metros
+xmax=0.33   # en metros
+Nt=1000
+Nl=100
+dt=(tmax-tmin)/Nt
+dx=(xmax-xmin)/Nl
+v=425. # m/s
+r=v*dt/dx
+```
+
+Se corre posteriormente el métodos de diferencias finitas igualando el extremo libre a su posición de la izquierda
+
+```
+#fija en los extremos
+xcoords=np.linspace(xmin,xmax,Nl)
+tcoords=np.linspace(tmin,tmax,Nt)
+chord=np.zeros((Nt,Nl))
+# fijar la condición inicial
+std=0.05
+chord[0]=0.01*np.exp(-xcoords**2/(2*std**2))
+chord[0,0]=0
+chord[0,-1]=0
+chord[1]=chord[0]+r**2/2.*(np.roll(chord[0],1)+np.roll(chord[0],-1)-2*chord[0])
+plt.figure(figsize=(10,3))
+plt.plot(xcoords,chord[0])
+plt.show()
+for i in range(2,Nt):
+    ppchord=chord[i-2]
+    pchord=chord[i-1]
+    chord[i]=2*(1-r**2)*pchord-ppchord+r**2*(np.roll(pchord,1)+np.roll(pchord,-1))
+    chord[i,0]=0
+    chord[i,-1]=chord[i,98]
+```
+
+Finalmente se ejecuta la animación
+
+```
+fig=plt.figure(figsize=(12,1))
+ax = fig.add_subplot(111, autoscale_on=False)
+chordplot,=ax.plot([],[],"o",ms=2)
+plt.xlim(xmin,xmax)
+plt.ylim(-0.01,0.01)
+
+time_template = 't = %.2f'
+time_text = ax.text(0.5, 0.8, 'nada',transform=ax.transAxes)
+
+def animate(i):
+    chordplot.set_data(xcoords,chord[3*i])
+    time_text.set_text(time_template%(i*dt*1000)+"ms")
+    return chordplot,time_text
+
+animacion = animation.FuncAnimation(fig, animate, np.arange(1,len(chord)/3),interval=1, blit=False)
+animacion.save("prueba.mp4",dpi=50)
+```
