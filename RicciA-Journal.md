@@ -184,8 +184,23 @@ Y el resultado obtenido se muestra en la siguiente imagen:
 
 ![alt text](https://github.com/aricci10/MC/blob/master/Im%C3%A1genes/Lissajou.png "Logo Title Text 1")
 
+#Clase 8 12-Jun-2015
 
-#Clase 8 16-jun-2015
+Después de leer la parte de errores de libro de Landau, aprendí lo siguiente:
+
+Lo primero, es que los errores en general se dan debido a la porpagación. Por ejemplo si se tiene un proceso, cuya probabilidad de exito es muy cercana a uno, y se corre una vez no hay problema, pero cuando se empieza a iterar el procesos esta probabilidad de exito empieza a disminuir drásticamnete hasta que al final es muy probable llegar a un fallo. Existen 4 tipos principales de errores:
+
++"Teoría mala": La teoría sobre la cual se está resolviendo el problema está mal planteada, ya sea un ecuación mal diseñada, un archivo con datos incorrectos, etc.
+
++Errores aleatorios: Son imposibles de controlar, y aumentan con el tiempo que se corra un porgrama, pueden darse debido a la electrónica del equipo usado entre otros. No son muy comunes.
+
++Errores de aproximación: Existen muchos métodos matemáticos cuya solución exacta es un proceso de infinitas iteraciones (ej. Series de taylor). Estos métodos se pueden resolver numéricamnete tomando un valor muy grande de iteraciones, pero es imposible realizar "infinitas" iteraciones produciendo un error.
+
++Errores de redondeo: Se dan debido a que existe un sin fin de números con infinitos decimales, pero computacionalmente deben trabajarse de forma finita. Estos errores inicialmente parecen insignificantes, pero al iterar múltiples veces empiezan a ser significativos.
+
+
+
+#Clase 9 16-jun-2015
 
 Durante esta clase trabajamos en interpolación de python. La idea fue encontrar el momento dipolar magnético de un imán con sus datos de campo magnético en función de la distancia.
 
@@ -280,7 +295,7 @@ freq = fftfreq(N, dt)
 plot(freq,np.abs(DatF),"o",label=u'DFT señal')
 ```
 
-Finalmente, se eliminan las frecuencias menores a 0.1, para limpiar la señal y se grafican los datos iniciales y la señal filtrada.
+Luego, se eliminan las frecuencias menores a 0.1, para limpiar la señal y se grafican los datos iniciales y la señal filtrada.
 
 ```
 figure(figsize(12,12))
@@ -294,6 +309,20 @@ title("Manchas solares(Filtrada)")
 xlabel("Tiempo en años")
 ylabel("Promedio de manchas solares")
 ```
+
+Finalmente se halla el periodo, encontrando el índice de los valores mínimos, y restando los años evaluados en estos índices.
+
+```
+i=0
+resp=[]
+while(i<len(y_cleaned)-1):
+    if((y_cleaned[i]<y_cleaned[i-1])and (y_cleaned[i]<y_cleaned[i+1])):
+        resp.append(i)
+    i+=1
+periodo= AF[resp[4]]-AF[resp[3]]
+print("El periodo de las manchas solares es de aproximadamente:",periodo,"años")
+```
+
 
 #Clase 13 1-Jul-2015
 
@@ -340,3 +369,7 @@ Siguiendo con la idea que llevo del proyecyo, tengo pensado crear un simulador e
 + Ondas electromangéticas.
 
 La idea radica en que el usuario pueda ingrasar ciertos valores, y el programa simule el resultado, de tal modo que sea fácil visualizar el fenómeno.
+
+##Entrada del proyecto.
+
+Finalmente decidí que para el proyecto final quería hacer un porograma relazionado con música el cual es uno de mis hobbies. Mi idea surgió después de estudiar la transformada de Fourier. Me di cuenta que era posible separar una canción de guitarra por las frecuencias que la componían. Después pensé en darle una aplicación a esta funcionalidad, y surgió la idea de crear animaciones en una "guitarra" virtual, aplicando teoría de ondas estacionarias en cuerdas.
